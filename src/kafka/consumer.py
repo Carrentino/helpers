@@ -6,7 +6,7 @@ from aiokafka import AIOKafkaConsumer, ConsumerRecord
 from orjson import orjson  # type: ignore
 from pydantic import BaseModel
 
-from src.contextvars import REQUEST_ID
+from src.contextvars import TRACE_ID
 
 
 class KafkaConsumerTopicsListeners:
@@ -53,7 +53,7 @@ class KafkaConsumerTopicsListeners:
         self,
         message: ConsumerRecord,
     ) -> Any:
-        REQUEST_ID.set(str(uuid4()))
+        TRACE_ID.set(str(uuid4()))
         if (listener := self._topic_listeners.get(message.topic)) is None:
             return None
         dict_data = orjson.loads(message.value)

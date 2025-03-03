@@ -18,7 +18,7 @@ async def _trace_id_header_event_hook(
 ) -> None:
     logger.trace('Event HTTPX: trace_id_header_event_hook')
     try:
-        trace_id = REQUEST_ID.get()
+        trace_id = TRACE_ID.get()
     except LookupError:
         return
     if request.headers.get(DEFAULT_TRACE_ID_HEADER_NAME) is None:
