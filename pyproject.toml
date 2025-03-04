@@ -17,6 +17,7 @@ pytest = "^8.3.4"
 orjson = "^3.10.15"
 httpx = "^0.28.1"
 loguru = "^0.7.3"
+aioredis = "^2.0.1"
 
 
 
