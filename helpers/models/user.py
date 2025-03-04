@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from enum import StrEnum
 
 from pydantic import BaseModel
@@ -12,5 +14,5 @@ class UserStatus(StrEnum):
 
 
 class UserContext(BaseModel):
-    user_id: int
+    user_id: UUID
     status: UserStatus
