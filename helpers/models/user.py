@@ -4,11 +4,13 @@ from pydantic import BaseModel
 
 
 class UserStatus(StrEnum):
-    ACTIVE = 'ACTIVE'
-    GUEST = 'GUEST'
+    NOT_REGISTERED = 'NOT_REGISTERED'
+    NOT_VERIFIED = 'NOT_VERIFIED'
+    VERIFIED = 'VERIFIED'
+    SUSPECTED = 'SUSPECTED'
+    BANNED = 'BANNED'
 
 
 class UserContext(BaseModel):
     user_id: int
     status: UserStatus
-    subscription: int
