@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime
-from zoneinfo import ZoneInfo
 
 from sqlalchemy import MetaData, func, UUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -13,7 +12,6 @@ CONSTRAINT_NAMING_CONVENTIONS = {
     'pk': 'pk_%(table_name)s',
 }
 
-MSK = ZoneInfo("Europe/Moscow")
 
 
 class Base(DeclarativeBase):
@@ -29,15 +27,15 @@ class Base(DeclarativeBase):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        insert_default=lambda: datetime.now(MSK),
+        insert_default=lambda: datetime.now(),
         server_default=func.now(),
         nullable=False,
     )
 
     updated_at: Mapped[datetime] = mapped_column(
-        insert_default=lambda: datetime.now(MSK),
+        insert_default=lambda: datetime.now(),
         server_default=func.now(),
-        onupdate=lambda: datetime.now(MSK),
+        onupdate=lambda: datetime.now(),
         nullable=False,
     )
 
