@@ -1,5 +1,4 @@
 from datetime import datetime
-from uuid import UUID
 
 from enum import StrEnum
 
@@ -20,7 +19,7 @@ AVAILABLE_USER_STATUSES = [UserStatus.NOT_VERIFIED, UserStatus.VERIFIED, UserSta
 
 
 class UserContext(BaseModel):
-    user_id: UUID | None
+    user_id: str | None
     status: UserStatus | None
     type: TokenType
     exp: datetime
