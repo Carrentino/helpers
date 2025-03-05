@@ -1,8 +1,11 @@
+from datetime import datetime
 from uuid import UUID
 
 from enum import StrEnum
 
 from pydantic import BaseModel
+
+from helpers.enums.auth import TokenType
 
 
 class UserStatus(StrEnum):
@@ -14,5 +17,7 @@ class UserStatus(StrEnum):
 
 
 class UserContext(BaseModel):
-    user_id: UUID
-    status: UserStatus
+    user_id: UUID | None
+    status: UserStatus | None
+    type: TokenType
+    exp: datetime
