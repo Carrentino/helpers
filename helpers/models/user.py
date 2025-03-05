@@ -16,6 +16,9 @@ class UserStatus(StrEnum):
     BANNED = 'BANNED'
 
 
+AVAILABLE_USER_STATUSES = [UserStatus.NOT_VERIFIED, UserStatus.VERIFIED, UserStatus.SUSPECTED]
+
+
 class UserContext(BaseModel):
     user_id: UUID | None
     status: UserStatus | None
