@@ -17,7 +17,7 @@ class SQLAlchemyClient:
             url=dsn.unicode_string(),
             poolclass=AsyncAdaptedQueuePool,
             pool_pre_ping=True,
-            echo=True,
+            echo=False,
         )
         self._ctx_session_manager = async_scoped_session(
             async_sessionmaker(autoflush=True, expire_on_commit=False, bind=self._engine),
