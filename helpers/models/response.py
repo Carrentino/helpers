@@ -9,3 +9,4 @@ class PaginatedResponse(BaseModel):
     total: int
     total_pages: int
     data: list[Any]
+
