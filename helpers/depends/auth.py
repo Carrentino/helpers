@@ -30,3 +30,18 @@ async def get_active_user(user: Annotated[UserContext, Depends(get_current_user)
         raise AccessForbiddenError
 
     return user
+
+async def get_optional_user(request: Request) -> UserContext | None:
+    payload = request.scope.get('auth_token_payload')
+
+    if not payload:
+        return None
+
+    try:
+        user_model = UserContext.model_validate(payload)
+    except ValidationError as err:
+        raise InvalidTokenError from err
+
+    USER_CTX.set(user_model)
+
+    return user_model
