@@ -1,5 +1,4 @@
 from collections.abc import AsyncGenerator
-from contextlib import asynccontextmanager
 from typing import Annotated
 
 from fastapi import Depends
@@ -15,21 +14,6 @@ async def get_db_client(request: Request) -> AsyncGenerator[SQLAlchemyClient, No
 
 
 async def get_db_session(
-    db_client: Annotated[SQLAlchemyClient, Depends(get_db_client)],
-) -> AsyncGenerator[AsyncSession, None]:
-    session = db_client.get_session()
-
-    try:
-        yield session
-        await session.commit()
-    except SQLAlchemyError:
-        await session.rollback()
-        raise
-    finally:
-        await db_client.close_ctx_session()
-
-@asynccontextmanager
-async def get_db_session_context(
     db_client: Annotated[SQLAlchemyClient, Depends(get_db_client)],
 ) -> AsyncGenerator[AsyncSession, None]:
     session = db_client.get_session()
