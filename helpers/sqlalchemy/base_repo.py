@@ -56,7 +56,6 @@ class ISqlAlchemyRepository[Model: Base](ABC):
     async def update_many(self, db_objects: list[Model]):
         self.session.add_all(db_objects)
         await self.session.flush()
-        await self.session.refresh(db_objects)
 
     async def delete(self, obj_id: UUID | int) -> None:
         db_object = await self.session.get(self._model, obj_id)
