@@ -18,7 +18,6 @@ async def get_current_user(request: Request) -> UserContext:
     try:
         user_model = UserContext.model_validate(payload)
     except ValidationError as err:
-        print(err)
         raise InvalidTokenError from err
 
     USER_CTX.set(user_model)

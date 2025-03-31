@@ -8,11 +8,10 @@ from helpers.enums.auth import TokenType
 
 
 class UserStatus(StrEnum):
-    NOT_REGISTERED = 'NOT_REGISTERED'
-    NOT_VERIFIED = 'NOT_VERIFIED'
-    VERIFIED = 'VERIFIED'
-    SUSPECTED = 'SUSPECTED'
-    BANNED = 'BANNED'
+    NOT_VERIFIED = 'Не верифицирован'
+    VERIFIED = 'Верифицирован'
+    SUSPECTED = 'Подозреваемый'
+    BANNED = 'Заблокирован'
 
 
 AVAILABLE_USER_STATUSES = [UserStatus.NOT_VERIFIED, UserStatus.VERIFIED, UserStatus.SUSPECTED]
