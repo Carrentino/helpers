@@ -9,7 +9,9 @@ class RedisClient:
         self.redis = None
 
     async def __aenter__(self) -> Redis:
-        self.redis = redis.from_url(self.address, db=self.db)
+        self.redis = redis.from_url(
+            self.address, db=self.db, decode_responses=True
+        )
         return self.redis
 
     async def __aexit__(self, exc_type, exc_value, traceback) -> None:
