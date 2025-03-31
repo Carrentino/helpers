@@ -11,6 +11,7 @@ from helpers.models.user import UserContext, UserStatus
 
 async def get_current_user(request: Request) -> UserContext:
     payload = request.scope.get('auth_token_payload')
+    print(payload)
 
     if not payload:
         raise InvalidTokenError
