@@ -26,7 +26,7 @@ async def get_current_user(request: Request) -> UserContext:
 
 
 async def get_active_user(user: Annotated[UserContext, Depends(get_current_user)]) -> UserContext | None:
-    if user.status != UserStatus.ACTIVE:
+    if user.status not in [UserStatus.VERIFIED, UserStatus.NOT_VERIFIED, UserStatus.SUSPECTED]:
         raise AccessForbiddenError
 
     return user
